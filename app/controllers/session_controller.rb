@@ -3,8 +3,6 @@ class SessionController < ApplicationController
   end
 
   def create
-<<<<<<< HEAD
-<<<<<<< HEAD
     # 送られてきたメールアドレスでユーザを検索
     # findメソッドの場合、nilが入るとエラーが発生する。セッションが消えている場合エラーが起こってしまう。
     user = User.find_by(email: session_params[:email])
@@ -17,19 +15,6 @@ class SessionController < ApplicationController
     else
       render :new
     end
-=======
-=======
->>>>>>> 6acca39... Create login screen and add comment
-    user = User.find_by(email: session_params[:email])
-
-    # &. nilガード
-    if user&.autheticate(session_params[:password])
-      session[:user_id] = user.id
-
-<<<<<<< HEAD
->>>>>>> 6acca39... Create login screen and add comment
-=======
->>>>>>> 6acca39... Create login screen and add comment
   end
 
   private

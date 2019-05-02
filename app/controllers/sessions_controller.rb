@@ -17,6 +17,13 @@ class SessionsController < ApplicationController
     end
   end
 
+  def destroy
+    # セッション内の情報を全て削除
+    reset_session
+
+    redirect_to root_url, notice: 'ログアウトしました。'
+  end
+
   private
   # リクエストパラメータとして送られてきた情報が想定通りであるかチェックし、受け付ける想定箇所だけを抜くとる
   def session_params

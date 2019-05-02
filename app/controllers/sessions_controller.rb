@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  # ログイン画面を表示するアクションに対しては、定義済みのフィルターを通らないようにする
+  skip_before_action :login_required
   def new
   end
 
@@ -9,7 +11,8 @@ class SessionsController < ApplicationController
 
     # ユーザーが見つかった場合は送られてきたパスワードによる認証をメソッドを用いて行う
     # &.: nilガード
-    if user&.autheticate(session_params[:password])
+    if user&.authenticate(session_params[:password])
+      # セッションにuser_idを格納
       session[:user_id] = user.id
       redirect_to root_url, notice: 'ログインしました。'
     else

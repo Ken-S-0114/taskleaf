@@ -1,12 +1,12 @@
 class Admin::UsersController < ApplicationController
   before_action :require_admin
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
     @users = User.all
   end
 
   def show
-    @user = User.find(params[:id])
   end
 
   def new
@@ -14,7 +14,6 @@ class Admin::UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def create
@@ -28,8 +27,6 @@ class Admin::UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
-
     if @user.update(user_params)
       redirect_to admin_user_url(@user), notice: "ユーザー「#{@user.name}」を更新しました。"
     else
@@ -38,9 +35,8 @@ class Admin::UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
     @user.destroy
-    redirect_to admin_user_url, notice: "ユーザー「#{@user.name}」を削除しました。"
+    redirect_to admin_users_url, notice: "ユーザー「#{@user.name}」を削除しました。"
   end
 
   private
@@ -51,5 +47,9 @@ class Admin::UsersController < ApplicationController
 
   def require_admin
     redirect_to root_url unless current_user.admin?
+  end
+
+  def set_user
+    @user = User.find(params[:id])
   end
 end

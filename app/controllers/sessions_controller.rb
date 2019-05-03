@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
   # ログイン画面を表示するアクションに対しては、定義済みのフィルターを通らないようにする
   skip_before_action :login_required
+
   def new
   end
 
@@ -14,7 +15,7 @@ class SessionsController < ApplicationController
     if user&.authenticate(session_params[:password])
       # セッションにuser_idを格納
       session[:user_id] = user.id
-      redirect_to root_url, notice: 'ログインしました。'
+      redirect_to root_path, notice: 'ログインしました。'
     else
       render :new
     end
@@ -24,7 +25,7 @@ class SessionsController < ApplicationController
     # セッション内の情報を全て削除
     reset_session
 
-    redirect_to root_url, notice: 'ログアウトしました。'
+    redirect_to root_path, notice: 'ログアウトしました。'
   end
 
   private

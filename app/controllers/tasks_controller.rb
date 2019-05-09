@@ -19,6 +19,11 @@ class TasksController < ApplicationController
   def create
     # ログインしているユーザーのidをuser_idに入れた状態でTaskデータを登録
     @task = current_user.tasks.new(task_params)
+    
+    if params[:back].present?
+      render :new
+      return
+    end
 
     if @task.save
       logger.debug "task: #{@task.attributes.inspect}"
@@ -41,6 +46,7 @@ class TasksController < ApplicationController
   def confirm_new
     @task = current_user.tasks.new(task_params)
     render :new unless @task.valid?
+  end
 
   def task_logger
     @task_logger ||= Logger.new('log/task.log', 'daily')

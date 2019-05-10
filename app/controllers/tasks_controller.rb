@@ -25,7 +25,7 @@ class TasksController < ApplicationController
   def create
     # ログインしているユーザーのidをuser_idに入れた状態でTaskデータを登録
     @task = current_user.tasks.new(task_params)
-    
+
     if params[:back].present?
       render :new
       return
@@ -60,6 +60,11 @@ class TasksController < ApplicationController
   end
 
   # task_logger.debug 'taskのログを出力'
+
+  def import
+    current_user.tasks.import(params[:file])
+    redirect_to tasks_url, notice: "タスクを追加しました"
+  end
 
   private
 

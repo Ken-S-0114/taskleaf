@@ -79,3 +79,5 @@ gem 'kaminari'
 
 # Asynchronous processing
 gem 'sidekiq'
+
+gem 'webpacker'

@@ -166,3 +166,10 @@ tags
 [._]*.un~
 
 # End of https://www.gitignore.io/api/vim,ruby,rails,macos
+
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity

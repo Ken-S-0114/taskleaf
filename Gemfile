@@ -71,4 +71,8 @@ gem 'bootstrap'
 gem 'rb-readline'
 gem 'rails_autolink'
 
+# Search
 gem 'ransack'
+
+# Pagination
+gem 'kaminari'

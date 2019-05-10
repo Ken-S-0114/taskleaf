@@ -76,3 +76,6 @@ gem 'ransack'
 
 # Pagination
 gem 'kaminari'
+
+# Asynchronous processing
+gem 'sidekiq'

@@ -7,6 +7,8 @@ class Task < ApplicationRecord
   # UserとTaskは１対多の関係
   belongs_to :user
 
+  has_one_attached :image
+
   scope :recent, -> { order(created_at: :desc) }
   
   # 検索結果を絞る

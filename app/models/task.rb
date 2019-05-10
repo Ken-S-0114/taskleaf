@@ -10,7 +10,9 @@ class Task < ApplicationRecord
   has_one_attached :image
 
   scope :recent, -> { order(created_at: :desc) }
-  
+
+  paginates_per 30
+
   # 検索結果を絞る
   def self.ransackable_attributes(auth_object = nil)
     %w[name created_at]
